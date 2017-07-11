@@ -1,0 +1,9 @@
+# Gradle
+.gradle/
+build/
+
+# Maven
+target/
+
+# Maven Wrapper
+.mvn
