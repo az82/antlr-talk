@@ -8,12 +8,15 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import org.antlr.v4.runtime.tree.TerminalNode;
 import org.antlr.v4.runtime.tree.xpath.XPath;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
@@ -48,6 +51,26 @@ public class JavaParserTest {
     public void setUp() throws Exception {
         Java8Lexer lexer = new Java8Lexer(CharStreams.fromFileName(SOURCE_FILE));
         parser = new Java8Parser(new CommonTokenStream(lexer));
+    }
+
+    /**
+     * ANTLR solution to the LoC Code Kata.
+     *
+     * @see <a href="http://codekata.com/kata/kata13-counting-code-lines/">http://codekata.com/kata/kata13-counting-code-lines/</a>
+     */
+    @Test
+    public void calcLoc() {
+        Set<Integer> lines = new HashSet<>();
+
+        ParseTreeWalker.DEFAULT.walk(new Java8BaseListener() {
+
+            @Override
+            public void visitTerminal(TerminalNode node) {
+                lines.add(node.getSymbol().getLine());
+            }
+        }, parser.compilationUnit());
+
+        assertThat(lines.size(), is(equalTo(95)));
     }
 
     @Test
