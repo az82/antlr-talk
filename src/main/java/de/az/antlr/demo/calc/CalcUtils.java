@@ -13,7 +13,7 @@ import java.util.function.Function;
 /**
  * Utilites for the Calculator demo.
  */
-public class CalcUtils {
+class CalcUtils {
 
     /**
      * Create a parser.
@@ -21,7 +21,7 @@ public class CalcUtils {
      * @param input input string
      * @return parser
      */
-    public static CalcParser createParser(String input) {
+    static CalcParser createParser(String input) {
         CalcLexer lexer = new CalcLexer(CharStreams.fromString(input));
         return new CalcParser(new CommonTokenStream(lexer));
 
@@ -34,7 +34,7 @@ public class CalcUtils {
      * @param <R>    return type
      * @throws IOException if reading stdin or writing stdout fails
      */
-    public static <R> void repl(Function<String, R> action) throws IOException {
+    static <R> void repl(Function<String, R> action) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             for (String line = prompt(reader); !isQuitCommand(line); line = prompt(reader)) {
                 System.out.println(action.apply(line));

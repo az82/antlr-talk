@@ -5,11 +5,18 @@ This project contains a small ANTLR showcase and and a talk introducing ANTLR.
 
 ## Content
 ### Java showcase
-The Java 8 grammar from https://github.com/antlr/grammars-v4/blob/master/java8/Java8.g4 is used as an example.
 
-The class `JavaParserTest` showcases the basic usage of lexer, parser, the visitor and listener patterns and parse tree matching with XPath.
+The Java 8 grammar from https://github.com/antlr/grammars-v4/blob/master/java8/Java8.g4 is used as an example.
+- `MethodsExtrationExample` extract method names from Java sources using the listener and visitor patterns and XPath
+- `LoCCounter` ANTLR solution to the LoC Code Kata (see http://codekata.com/kata/kata13-counting-code-lines/)
+
 
 ### Calc showcase
+
+- `ListeningCalculator` showcases the listener pattern
+- `VisitingCalculator` showcases the visitor pattern
+- `TreeWalkingCalculator` showcases tree walking
+- `NumberDumper` showcases XPath on the AST
 
 ### Talk
 
